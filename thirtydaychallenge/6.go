@@ -1,50 +1,33 @@
 package main
 
-import (
-	"bytes"
-	"fmt"
-	"sort"
-)
+import "sort"
 
-func groupAnagrams(values []string) [][]string {
-	anagramsByKey := map[string][]string{}
-
-	for _, value := range values {
-		key := computeKey(value)
-		fmt.Println(key)
-		anagramsByKey[key] = append(anagramsByKey[key], value)
+func getAnagramKey(word string) string {
+	chars := []rune{}
+	for _, char := range word {
+		chars = append(chars, char)
 	}
-	fmt.Println(anagramsByKey)
-
-	var groups [][]string
-
-	// for _, group := range anagramsByKey {
-	// 	groups = append(groups, group)
-	// }
-
-	return groups
-}
-
-func computeKey(value string) string {
-	var characters []rune
-
-	for _, char := range value {
-		characters = append(characters, char)
-	}
-
-	sort.Slice(characters, func(i, j int) bool {
-		return characters[i] < characters[j]
+	sort.Slice(chars, func(i, j int) bool {
+		return chars[i] < chars[j]
 	})
 
-	var buf bytes.Buffer
-
-	for _, char := range characters {
-		buf.WriteRune(char)
-	}
-
-	return buf.String()
+	return string(chars)
 }
 
-func main() {
-	fmt.Println(groupAnagrams([]string{"cat", "tac", "ate", "eat"}))
+func groupAnagrams(words []string) [][]string {
+
+	groups := [][]string{}
+	anagrams := map[string][]string{}
+
+	for _, word := range words {
+		anagramKey := getAnagramKey(word)
+		anagrams[anagramKey] = append(anagrams[anagramKey], word)
+	}
+
+	for _, anagramGroup := range anagrams {
+		groups = append(groups, anagramGroup)
+	}
+
+	return groups
+
 }
