@@ -2,7 +2,7 @@ package main
 
 import "math"
 
-// https://leetcode.com/problems/middle-of-the-linked-list/submissions/
+// https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/529/week-2/3290/
 
 func getMiddleIdx(size float64) float64 {
 	if int(size)%2 == 0 {
