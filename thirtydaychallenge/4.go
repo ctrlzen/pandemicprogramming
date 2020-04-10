@@ -1,6 +1,6 @@
 package main
 
-// https://leetcode.com/explore/other/card/30-day-leetcoding-challenge/528/week-1/
+// https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/528/week-1/3286/
 
 func moveZeroes(nums []int) {
 
